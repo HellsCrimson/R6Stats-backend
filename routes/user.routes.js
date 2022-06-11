@@ -1,6 +1,8 @@
 import { Router } from 'express';
-import { getUserInfosByName } from '../controllers/user.controllers.js';
+import { getUserInfos, getPvpStats, getPveStats } from '../controllers/user.controllers.js';
 
 export const userRoute = Router();
 
-userRoute.get('/getUserByName', getUserInfosByName);
+userRoute.post('/info', getUserInfos);
+userRoute.post('/statsPvp', getPvpStats);
+userRoute.post('/statsPve', getPveStats);
