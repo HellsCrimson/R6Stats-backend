@@ -16,8 +16,11 @@ export async function getUserInfosByName(req, res) {
             const { 0: stats } = await r6api.getStats(platform, player.id);
 
             if (!stats) return 'Stats not found';
+            delete stats.id;
 
-            return res.send({data: [ player, stats] })
+            const user = Object.assign(player, stats);
+
+            return res.send({data: user })
         }
         return res.status(500).send({message: "User not found"})
     } catch (err) {
